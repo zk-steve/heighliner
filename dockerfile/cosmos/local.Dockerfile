@@ -44,7 +44,7 @@ ARG VENDOR
 # Skips if a go related "vendor" folder is detected.
 # Note: a custom build dir indicates a monorepo with potential dependencies we can't anticipate atm
 RUN set -eux; \
-    if [[ "${BUILD_DIR}" == "." && "${VENDOR}}" == "false" ]]; then\
+    if [[ "${BUILD_DIR}" == "." && "${VENDOR}" == "false" ]]; then\
         go mod download;\
     fi;
 
@@ -66,8 +66,6 @@ ARG BUILD_DIR
 
 # This Dockerfile  is the same as native.Dockerfile except that the chain code is sourced from the
 # current working directory instead of a remote git repository.
-COPY go.mod go.sum ./
-RUN go mod download
 ADD . .
 
 RUN set -eux; \

@@ -39,8 +39,6 @@ RUN if [ ! -z "${CLONE_KEY}" ]; then\
   ssh-keyscan github.com >> ~/.ssh/known_hosts;\
   fi \
 
-COPY go.mod go.sum ./
-RUN go mod download
 ADD . .
 
 RUN set -eux;\
